@@ -9,32 +9,35 @@ SELECT member_id, first_name, last_name, email, join_date FROM members;
 UPDATE members SET phone_number = '07000 100005', email = 'emily.jones.updated@email.com' WHERE member_id = 5;
 -- SELECT * FROM members WHERE member_id = 5;
 
--- 1.3
-SELECT COUNT(*) FROM members;
+-- 1.3 - DONE
+SELECT COUNT(*) AS count FROM members;
 
--- 1.4
--- GO BACK TO THISSSS!!!!
-SELECT m.member_id, m.first_name, m.last_name, COUNT(*) AS registration_count
-FROM members
-WHERE 
+-- 1.4 - DONE...
+SELECT member_id, first_name, last_name, MAX(count) AS registration_count
+    FROM  (
+        SELECT m.member_id AS member_id, m.first_name AS first_name, m.last_name AS last_name, COUNT(*) AS count
+        FROM class_attendance AS c
+        JOIN members AS m 
+        ON c.member_id = m.member_id
+        GROUP BY c.member_id
+);
 
-SELECT m.member_id, m.first_name, m.last_name, MAX(count) AS registration_count
+-- 1.5 - DONE
+SELECT member_id, first_name, last_name, MIN(count) AS registration_count
+    FROM  (
+        SELECT m.member_id AS member_id, m.first_name AS first_name, m.last_name AS last_name, COUNT(*) AS count
+        FROM class_attendance AS c
+        JOIN members AS m 
+        ON c.member_id = m.member_id
+        GROUP BY c.member_id
+);
+
+-- 1.6 - DONE
+SELECT COUNT(*) AS Count FROM (
+    SELECT m.member_id AS member_id, m.first_name AS first_name, m.last_name AS last_name, COUNT(*) AS count
     FROM class_attendance AS c
     JOIN members AS m 
     ON c.member_id = m.member_id
-    WHERE (
-        SELECT COUNT(*) AS count 
-        FROM class_attendance
-        GROUP BY c.member_id
-    );
-
--- 1.5
-
-
--- 1.6
-SELECT COUNT(*) FROM class_attendance WHERE 
-
-SELECT COUNT(*) AS Count, c.member_id 
-    FROM class_attendance AS c
     GROUP BY c.member_id
-    HAVING Count >= 2;
+    HAVING count >= 2
+);
