@@ -8,7 +8,7 @@ INSERT INTO payments VALUES
 -- 2.2 
 
 
--- 2.3 
+-- 2.3 - DONE
 SELECT payment_id, amount, payment_date, payment_method 
     FROM payments 
     WHERE payment_type = 'Monthly membership fee';
