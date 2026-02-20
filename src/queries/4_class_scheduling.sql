@@ -1,13 +1,23 @@
 .open fittrackpro.db
 .mode column
 
--- 4.1 
-
+-- 4.1 - DONE
+-- I used a double pipe (||) to concatenate two fields into one for the purposes of displaying the instructor's full name
+SELECT cs.class_id, c.name AS class_name, s.first_name || ' ' || s.last_name AS instructor_name
+    FROM class_schedule AS cs
+    JOIN classes AS c
+    ON cs.class_id = c.class_id
+    JOIN staff AS s
+    ON cs.staff_id = s.staff_id;
 
 -- 4.2 
+SELECT c.class_id, c.name, cs.start_time, cs.end_time, c.capacity 
+    FROM class_schedule AS cs 
+    JOIN classes AS c 
+    ON cs.class_id = c.class_id
+    WHERE strftime('%Y-%m-%d', cs.start_time) = '2025-02-01';
 
-
--- 4.3 
+-- 4.3 - DONE?
 INSERT INTO class_attendance VALUES
     (16, 1, 11, 'Registered');
 
