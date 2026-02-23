@@ -53,9 +53,3 @@ SELECT ROUND(AVG(member_class_count), 2) AS average_classes_per_member
         ON cs.class_id = c.class_id
         GROUP BY ca.member_id
     );
-
-SELECT type AS equipment_type, ROUND(AVG(JulianDay('now') - JulianDay(purchase_date))) AS avg_age_days 
-    FROM equipment
-    GROUP BY equipment_type;
-
-
