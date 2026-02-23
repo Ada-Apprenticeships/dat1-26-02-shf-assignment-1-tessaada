@@ -3,7 +3,7 @@
 
 -- 2.1 - DONE
 INSERT INTO payments VALUES
-(8, 11, 50.00, CURRENT_TIMESTAMP, 'Credit Card', 'Monthly membership fee');
+    (8, 11, 50.00, CURRENT_TIMESTAMP, 'Credit Card', 'Monthly membership fee');
 
 -- 2.2 - DONE
 SELECT strftime('%m-%Y', payment_date) AS month, SUM(amount) AS total_revenue 
