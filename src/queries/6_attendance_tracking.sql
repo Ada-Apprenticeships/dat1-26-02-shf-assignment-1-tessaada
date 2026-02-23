@@ -11,6 +11,7 @@ SELECT date(check_in_time) AS visit_date, time(check_in_time) AS check_in_time, 
     WHERE member_id = 5;
 
 -- 6.3 - DONE
+-- Maps the index to the string of the day of the week (there is not an in-built function for this)
 SELECT CASE strftime('%w', check_in_time) 
         WHEN '0' THEN 'Sunday'
         WHEN '1' THEN 'Monday'
