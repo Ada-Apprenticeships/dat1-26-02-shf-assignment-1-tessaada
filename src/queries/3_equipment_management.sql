@@ -1,8 +1,8 @@
 .open fittrackpro.db
-.mode column
+.mode box
 
--- 3.1 
-SELECT * FROM equipment WHERE julianday(next_maintenance_date) <= julianday(
+-- 3.1 - DONE
+SELECT equipment_id, name, next_maintenance_date FROM equipment WHERE julianday(next_maintenance_date) <= julianday('2025-01-01','+30 days');
 
 -- 3.2 - DONE
 SELECT type AS equipment_type, COUNT(*) AS count 

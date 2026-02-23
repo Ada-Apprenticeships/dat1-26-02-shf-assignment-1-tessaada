@@ -10,14 +10,23 @@ SELECT cs.class_id, c.name AS class_name, s.first_name || ' ' || s.last_name AS 
     JOIN staff AS s
     ON cs.staff_id = s.staff_id;
 
--- 4.2 
-SELECT c.class_id, c.name, cs.start_time, cs.end_time, c.capacity 
+-- 4.2 - DONE
+SELECT c.class_id, c.name, cs.start_time, cs.end_time, 
+        c.capacity - (
+            SELECT COUNT(*) AS attendance_num FROM class_attendance AS ca
+            JOIN class_schedule AS cs 
+            ON cs.schedule_id = ca.schedule_id 
+            GROUP BY cs.class_id
+        ) AS available_spots
     FROM class_schedule AS cs 
     JOIN classes AS c 
     ON cs.class_id = c.class_id
-    WHERE strftime('%Y-%m-%d', cs.start_time) = '2025-02-01';
+    JOIN class_attendance AS ca 
+    ON cs.schedule_id = ca.schedule_id
+    WHERE strftime('%Y-%m-%d', cs.start_time) = '2025-02-01'
+    GROUP BY cs.class_id;
 
--- 4.3 - DONE?
+-- 4.3 - DONE
 INSERT INTO class_attendance VALUES
     (16, 1, 11, 'Registered');
 
