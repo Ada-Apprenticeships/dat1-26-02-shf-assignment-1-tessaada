@@ -9,7 +9,7 @@ INSERT INTO payments VALUES
 SELECT strftime('%m-%Y', payment_date) AS month, SUM(amount) AS total_revenue 
     FROM payments 
     WHERE payment_type = 'Monthly membership fee'
-    AND payment_date BETWEEN '2024-11' AND '2025-02'
+        AND payment_date BETWEEN '2024-11' AND '2025-02'
     GROUP BY month
     ORDER BY payment_date DESC;
 

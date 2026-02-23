@@ -12,6 +12,6 @@ SELECT type AS equipment_type, COUNT(*) AS count
     GROUP BY equipment_type;
 
 -- 3.3 - DONE
-SELECT type AS equipment_type, ROUND(AVG(JulianDay('now') - JulianDay(purchase_date))) AS avg_age_days 
+SELECT type AS equipment_type, ROUND(AVG(julianday('now') - julianday(purchase_date))) AS avg_age_days 
     FROM equipment
     GROUP BY equipment_type;

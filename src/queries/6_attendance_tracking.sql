@@ -31,6 +31,6 @@ SELECT CASE strftime('%w', check_in_time)
 SELECT l.name AS location_name, COUNT(strftime('%w', check_in_time))
     FROM attendance AS a
     JOIN locations AS l 
-    ON a.location_id = l.location_id
+        ON a.location_id = l.location_id
     GROUP BY location_name;
 
