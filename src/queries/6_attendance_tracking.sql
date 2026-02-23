@@ -28,7 +28,7 @@ SELECT CASE strftime('%w', check_in_time)
     LIMIT 1;
 
 -- 6.4 
-SELECT l.name AS location_name, COUNT(strftime('%w', check_in_time))
+SELECT l.name AS location_name, COUNT(strftime('%w', check_in_time)) AS avg_daily_attendance
     FROM attendance AS a
     JOIN locations AS l 
         ON a.location_id = l.location_id

@@ -1,5 +1,5 @@
 .open fittrackpro.db
-.mode column
+.mode box
 
 -- 8.1 - DONE
 SELECT pt.session_id, m.first_name || ' ' || m.last_name AS member_name, pt.session_date, pt.start_time, pt.end_time

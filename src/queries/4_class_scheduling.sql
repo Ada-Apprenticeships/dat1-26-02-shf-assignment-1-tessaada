@@ -3,9 +3,10 @@
 
 -- 4.1 - DONE
 -- I used a double pipe (||) to concatenate two fields into one for the purposes of displaying the instructor's full name
-SELECT cs.class_id, c.name AS class_name, s.first_name || ' ' || s.last_name AS instructor_name
-    FROM class_schedule AS cs
-    JOIN classes AS c
+-- Using DISTINCT to only show results once (even if there are multiple classes with the same instructor scheduled)
+SELECT DISTINCT c.class_id, c.name AS class_name, s.first_name || ' ' || s.last_name AS instructor_name
+    FROM classes AS c
+    JOIN class_schedule AS cs
         ON cs.class_id = c.class_id
     JOIN staff AS s
         ON cs.staff_id = s.staff_id;
