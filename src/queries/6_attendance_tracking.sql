@@ -1,5 +1,5 @@
 .open fittrackpro.db
-.mode column
+.mode box
 
 -- 6.1 - DONE
 INSERT INTO attendance (attendance_id, member_id, location_id, check_in_time) 
@@ -23,7 +23,9 @@ SELECT CASE strftime('%w', check_in_time)
     END AS day_of_week, 
     COUNT(*) AS visit_count 
     FROM attendance 
-    GROUP BY strftime('%w', check_in_time);
+    GROUP BY strftime('%w', check_in_time)
+    ORDER BY visit_count DESC
+    LIMIT 1;
 
 -- 6.4 
 SELECT l.name AS location_name, COUNT(strftime('%w', check_in_time))
