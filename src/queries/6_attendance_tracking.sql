@@ -27,8 +27,9 @@ SELECT CASE strftime('%w', check_in_time)
     ORDER BY visit_count DESC
     LIMIT 1;
 
--- 6.4 
-SELECT l.name AS location_name, COUNT(strftime('%w', check_in_time)) AS avg_daily_attendance
+-- 6.4 - DONE
+-- I decided to round to 5 d.p. for conciseness, while still maintaining enough accuracy.
+SELECT l.name AS location_name, ROUND(COUNT(*) / (julianday(max(check_in_time)) - julianday(min(check_in_time))), 5) AS avg_daily_attendance
     FROM attendance AS a
     JOIN locations AS l 
         ON a.location_id = l.location_id
