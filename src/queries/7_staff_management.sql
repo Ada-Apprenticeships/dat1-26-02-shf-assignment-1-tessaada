@@ -7,7 +7,7 @@ SELECT staff_id, first_name, last_name, position AS role
     ORDER BY role;
 
 -- 7.2 - DONE
-SELECT s.staff_id AS trainer_id, s.first_name || ' ' || s.last_name AS trainer_name, COUNT(*) AS session_count
+SELECT s.staff_id AS trainer_id, s.first_name || ' ' || s.last_name AS trainer_name, count(*) AS session_count
     FROM staff AS s
     JOIN personal_training_sessions AS pts
         ON s.staff_id = pts.staff_id

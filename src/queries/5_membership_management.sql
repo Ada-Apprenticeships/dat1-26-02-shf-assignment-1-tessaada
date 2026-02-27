@@ -11,7 +11,7 @@ SELECT m.member_id, m.first_name, m.last_name, ms.type AS membership_type, m.joi
 -- 5.2 - DONE
 -- Multiply average to get answer in minutes rather than days (there are 1440 minutes in a day)
 -- Round to 2 decimal places
-SELECT ms.type AS membership_type, ROUND(AVG((julianday(a.check_out_time) - julianday(a.check_in_time)))*1440, 2) AS avg_visit_duration_minutes
+SELECT ms.type AS membership_type, round(avg((julianday(a.check_out_time) - julianday(a.check_in_time)))*1440, 2) AS avg_visit_duration_minutes
     FROM attendance AS a
     JOIN members AS m 
         ON a.member_id = m.member_id

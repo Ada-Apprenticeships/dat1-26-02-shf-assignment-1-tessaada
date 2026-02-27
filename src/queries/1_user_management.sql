@@ -11,12 +11,12 @@ UPDATE members
     WHERE member_id = 5;
 
 -- 1.3 - DONE
-SELECT COUNT(*) AS count FROM members;
+SELECT count(*) AS count FROM members;
 
 -- 1.4 - DONE...
-SELECT member_id, first_name, last_name, MAX(count) AS registration_count
+SELECT member_id, first_name, last_name, max(count) AS registration_count
     FROM (
-        SELECT m.member_id AS member_id, m.first_name AS first_name, m.last_name AS last_name, COUNT(*) AS count
+        SELECT m.member_id AS member_id, m.first_name AS first_name, m.last_name AS last_name, count(*) AS count
             FROM class_attendance AS c
             JOIN members AS m 
                 ON c.member_id = m.member_id
@@ -24,9 +24,9 @@ SELECT member_id, first_name, last_name, MAX(count) AS registration_count
 );
 
 -- 1.5 - DONE
-SELECT member_id, first_name, last_name, MIN(count) AS registration_count
+SELECT member_id, first_name, last_name, min(count) AS registration_count
     FROM (
-        SELECT m.member_id AS member_id, m.first_name AS first_name, m.last_name AS last_name, COUNT(*) AS count
+        SELECT m.member_id AS member_id, m.first_name AS first_name, m.last_name AS last_name, count(*) AS count
             FROM class_attendance AS c
             JOIN members AS m 
                 ON c.member_id = m.member_id
@@ -34,9 +34,9 @@ SELECT member_id, first_name, last_name, MIN(count) AS registration_count
 );
 
 -- 1.6 - DONE
-SELECT COUNT(*) AS Count 
+SELECT count(*) AS Count 
     FROM (
-        SELECT m.member_id AS member_id, m.first_name AS first_name, m.last_name AS last_name, COUNT(*) AS count
+        SELECT m.member_id AS member_id, m.first_name AS first_name, m.last_name AS last_name, count(*) AS count
             FROM class_attendance AS c
             JOIN members AS m 
                 ON c.member_id = m.member_id

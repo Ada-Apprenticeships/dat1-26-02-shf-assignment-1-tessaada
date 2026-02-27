@@ -14,7 +14,7 @@ SELECT DISTINCT c.class_id, c.name AS class_name, s.first_name || ' ' || s.last_
 -- 4.2 - DONE
 SELECT c.class_id, c.name, cs.start_time, cs.end_time, 
         c.capacity - (
-            SELECT COUNT(*) AS attendance_num FROM class_attendance AS ca
+            SELECT count(*) AS attendance_num FROM class_attendance AS ca
             JOIN class_schedule AS cs 
                 ON cs.schedule_id = ca.schedule_id 
             GROUP BY cs.class_id
@@ -33,7 +33,7 @@ INSERT INTO class_attendance VALUES
 DELETE FROM class_attendance WHERE member_id = 3 AND schedule_id = 7;
 
 -- 4.5 - DONE
-SELECT c.class_id, c.name, COUNT(*) AS registration_count
+SELECT c.class_id, c.name, count(*) AS registration_count
     FROM class_attendance AS a
     JOIN class_schedule AS s
         ON a.schedule_id = s.schedule_id
@@ -44,9 +44,9 @@ SELECT c.class_id, c.name, COUNT(*) AS registration_count
 
 -- 4.6 - DONE
 -- Round to two decimal places
-SELECT ROUND(AVG(member_class_count), 2) AS average_classes_per_member
+SELECT round(avg(member_class_count), 2) AS average_classes_per_member
     FROM (
-        SELECT COUNT(*) AS member_class_count
+        SELECT count(*) AS member_class_count
             FROM class_attendance AS ca 
             JOIN class_schedule AS cs 
                 ON ca.schedule_id = cs.schedule_id
