@@ -111,10 +111,13 @@ CREATE TABLE class_attendance(
     attendance_status VARCHAR(15) NOT NULL CHECK(attendance_status IN ('Registered','Attended','Unattended'))
 );
 
+-- NUMERIC is more accurate than REAL, so it is commonly chosen when currency is involved
+-- I chose the NUMERIC type because it is more precise and I can specify the max number of d.p.
+-- This helps to enforce the standard currency format.
 CREATE TABLE payments(
     payment_id INTEGER PRIMARY KEY AUTOINCREMENT,
     member_id INTEGER NOT NULL REFERENCES members(member_id),
-    amount INTEGER NOT NULL,
+    amount NUMERIC(5,2) NOT NULL,
     payment_date TEXT NOT NULL DEFAULT CURRENT_DATE CHECK(payment_date GLOB '????-??-?? ??:??:??'),
     payment_method VARCHAR(30) NOT NULL CHECK(payment_method IN ('Credit Card', 'Bank Transfer', 'PayPal','Cash')),
     payment_type VARCHAR(50) NOT NULL CHECK(payment_type IN ('Monthly membership fee', 'Day pass'))
