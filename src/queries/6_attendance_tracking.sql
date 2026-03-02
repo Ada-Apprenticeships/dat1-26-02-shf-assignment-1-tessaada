@@ -29,7 +29,7 @@ SELECT CASE strftime('%w', check_in_time)
 
 -- 6.4 - DONE
 -- I decided to round to 5 d.p. for conciseness, while still maintaining enough accuracy.
-SELECT l.name AS location_name, round(count(*) / (julianday(max(check_in_time)) - julianday(min(check_in_time))), 5) AS avg_daily_attendance
+SELECT l.name AS location_name, round(count(*) / (julianday(max(a.check_in_time)) - julianday(min(a.check_in_time))), 5) AS avg_daily_attendance
     FROM attendance AS a
     JOIN locations AS l 
         ON a.location_id = l.location_id
